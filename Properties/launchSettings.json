@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "QuickTXTSplitter": {
+      "commandName": "Project",
+      "commandLineArgs": "-r \"\\[\\[(.*)\\]\\]\" -c 1",
+      "workingDirectory": "C:\\Users\\cbush\\Documents\\testing"
+    }
+  }
+}
