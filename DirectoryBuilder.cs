@@ -4,6 +4,9 @@ using static QuickTXTSplitter.ErrorHandler;
 
 namespace QuickTXTSplitter
 {
+    /// <summary>
+    /// Builds the destination directory tree structure.
+    /// </summary>
     internal static class DirectoryBuilder
     {
         internal const string ForeignSubdirectory = "[!NonLatin]";
@@ -11,6 +14,10 @@ namespace QuickTXTSplitter
         const string subdirectoryCharacters = "0123456789abcdefghijklmnopqrstuvwxyz$";
         const string operation = "attempting to build the destination directory tree structure";
 
+        /// <summary>
+        /// Builds the destination directory tree structure.
+        /// </summary>
+        /// <param name="destinationInfo">Directory into which to write.</param>
         internal static void BuildDirectories(DirectoryInfo destinationInfo)
         {
             try

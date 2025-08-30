@@ -7,6 +7,9 @@ using System.Collections.Immutable;
 
 namespace QuickTXTSplitter
 {
+    /// <summary>
+    /// Provides a method for splitting files and tracks names of created split files to ensure duplicate names are not created.
+    /// </summary>
     internal static partial class FileSplitter
     {
         static readonly StringBuilder operationBuilder = new("initialize the file splitter");
@@ -52,6 +55,11 @@ namespace QuickTXTSplitter
             {'z', new(4, 200_000) },
         }.ToImmutableDictionary();
 
+        /// <summary>
+        /// Splits a source file at lines matching the provided <see cref="Regex"/>.
+        /// </summary>
+        /// <param name="sourceFilepath">Path to the source file.</param>
+        /// <param name="args">Command-line arguments.</param>
         internal static void Split(string sourceFilepath, ArgParser.ParsedArgs args)
         {
             try

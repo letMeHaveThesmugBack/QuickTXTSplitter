@@ -4,8 +4,18 @@ using System.Text.RegularExpressions;
 
 namespace QuickTXTSplitter
 {
+    /// <summary>
+    /// Provides standardized error handling.
+    /// </summary>
     internal static class ErrorHandler
     {
+        /// <summary>
+        /// Writes a standardized error message to the console for various types of <see cref="Exception"/>s, and exits the program.
+        /// Writes a line describing the type of error and what operation threw the <see cref="Exception"/>, followed by the <see cref="Exception"/> message.
+        /// All lines are written in <see cref="ConsoleColor.Red"/>.
+        /// </summary>
+        /// <param name="operation">A description of what operation was being performed when the <see cref="Exception"/> was thrown.</param>
+        /// <param name="ex">The thrown <see cref="Exception"/>.</param>
         internal static void WriteStandardizedErrorMessageAndExit(string operation, Exception ex)
         {
             StringBuilder messageBuilder = ex switch

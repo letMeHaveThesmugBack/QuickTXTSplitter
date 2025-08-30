@@ -3,10 +3,17 @@ using static QuickTXTSplitter.ErrorHandler;
 
 namespace QuickTXTSplitter
 {
+    /// <summary>
+    /// Parser for command-line arguments.
+    /// </summary>
     internal static class ArgParser
     {
         const string operation = "parse command-line arguments";
 
+
+        /// <summary>
+        /// Represents an ArgParser state resulting from the last argument parsed.
+        /// </summary>
         internal enum ParseState
         {
             None,
@@ -17,8 +24,21 @@ namespace QuickTXTSplitter
             Prefix
         }
 
+        /// <summary>
+        /// Container for values parsed from command-line arguments.
+        /// </summary>
+        /// <param name="Source">The directory containing the source file(s). Defaults to the current working directory.</param>
+        /// <param name="Destination">The directory into which the split files will be written. Defaults to the current working directory.</param>
+        /// <param name="Regex">A regular expression which, upon successfully matching to a line of a source file, determines where to produce a split. Required.</param>
+        /// <param name="CapturingGroup">If <paramref name="Regex"/> matches, this is the index of the capturing group whose value shall be used as the title of the resulting split file. Defaults to <c>0</c>.</param>
+        /// <param name="Prefix"><see langword="string"/> to prepend to the split file name.</param>
         internal record ParsedArgs(DirectoryInfo Source, DirectoryInfo Destination, Regex Regex, int CapturingGroup, string Prefix);
 
+        /// <summary>
+        /// Parses command-line arguments.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns>A <see cref="ParsedArgs"/> containing the parsed arguments.</returns>
         internal static ParsedArgs Parse(string[] args)
         {
             try
@@ -50,7 +70,7 @@ namespace QuickTXTSplitter
 
                     else
                     {
-                        InterpretOption(arg);
+                        InterpretOption(arg); // Workbook: inline
 
                         state = ParseState.None;
                     }
