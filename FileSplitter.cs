@@ -7,6 +7,9 @@ using System.Collections.Immutable;
 namespace QuickTXTSplitter
 {
     internal static partial class FileSplitter
+    /// <summary>
+    /// Splits large text files into smaller chunks based on the specified arguments.
+    /// </summary>
     {
         static readonly ConcurrentHashSet<string> nonAlphanumericFilenames = new(4, 1_500_000);
         static readonly ImmutableDictionary<char, ConcurrentHashSet<string>> alphanumericFilenames = new Dictionary<char, ConcurrentHashSet<string>>
@@ -50,6 +53,11 @@ namespace QuickTXTSplitter
         }.ToImmutableDictionary();
 
         internal static void Split(string sourceFilepath, ArgParser.ParsedArgs args)
+    /// <summary>
+    /// Splits the input file into multiple smaller files based on the provided arguments.
+    /// </summary>
+    /// <param name="sourceFilepath">The path to the input file.</param>
+    /// <param name="args">The parsed arguments containing destination, regex, capturing group, and prefix.</param>
         {
             DirectoryInfo destinationInfo = args.Destination;
             Regex regex = args.Regex;

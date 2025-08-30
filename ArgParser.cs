@@ -3,6 +3,9 @@
 namespace QuickTXTSplitter
 {
     internal static class ArgParser
+    /// <summary>
+    /// Provides command-line argument parsing functionality for QuickTXTSplitter.
+    /// </summary>
     {
         internal enum ParseState
         {
@@ -17,6 +20,11 @@ namespace QuickTXTSplitter
         internal record ParsedArgs(DirectoryInfo Source, DirectoryInfo Destination, Regex Regex, int CapturingGroup, string Prefix);
 
         internal static ParsedArgs Parse(string[] args)
+    /// <summary>
+    /// Parses the command-line arguments and returns the parsed result.
+    /// </summary>
+    /// <param name="args">The array of command-line arguments.</param>
+    /// <returns>A ParsedArgs record containing the parsed arguments.</returns
         {
             string currentArg;
 

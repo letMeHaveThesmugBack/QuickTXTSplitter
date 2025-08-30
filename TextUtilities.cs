@@ -4,7 +4,15 @@ namespace QuickTXTSplitter
 {
     internal static class TextUtilities
     {
+    /// <summary>
+    /// Provides utility methods for text processing used by QuickTXTSplitter.
+    /// </summary>
         internal enum NormalizationCode
+    /// <summary>
+    /// Cleans a line of text by removing unwanted characters or formatting.
+    /// </summary>
+    /// <param name="line">The line of text to clean.</param>
+    /// <returns>The cleaned line of text.</returns>
         {
             Foreign = '%',
             Symbol = '$' // todo: these and the [!...] things should be defined somewhere consistent and referenced instead of being hardcoded

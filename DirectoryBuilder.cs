@@ -6,11 +6,19 @@ namespace QuickTXTSplitter
     // 08/28/2025: This is verified working so far.
     internal static class DirectoryBuilder
     {
+            /// <summary>
+            /// Handles creation and management of output directories for file splitting.
+            /// </summary>
         internal const string ForeignSubdirectory = "[!NonLatin]";
         internal const string NoMatchSubdirectory = "[!NoMatch]";
         const string subdirectoryCharacters = "0123456789abcdefghijklmnopqrstuvwxyz$";
 
         internal static void BuildDirectories(DirectoryInfo destinationInfo)
+            /// <summary>
+            /// Creates the output directory if it does not exist.
+            /// </summary>
+            /// <param name="outputPath">The path to the output directory.</param>
+            /// <returns>True if the directory was created or already exists; otherwise, false.</returns>
         {
             try
             {
