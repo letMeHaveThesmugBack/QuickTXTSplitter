@@ -1,14 +1,15 @@
 ﻿using System.Security;
 using System.Text;
+using static QuickTXTSplitter.ErrorHandler;
 
 namespace QuickTXTSplitter
 {
-    // 08/28/2025: This is verified working so far.
     internal static class DirectoryBuilder
     {
         internal const string ForeignSubdirectory = "[!NonLatin]";
         internal const string NoMatchSubdirectory = "[!NoMatch]";
         const string subdirectoryCharacters = "0123456789abcdefghijklmnopqrstuvwxyz$";
+        const string operation = "attempting to build the destination directory tree structure";
 
         internal static void BuildDirectories(DirectoryInfo destinationInfo)
         {
@@ -38,52 +39,10 @@ namespace QuickTXTSplitter
                 }
             }
 
-            catch (Exception ex) when (ex is ArgumentException or ArgumentNullException)
+            catch (Exception ex)
             {
-                WriteStandardizedErrorMessageAndExit("An invalid argument was passed to a function", ex);
+                WriteStandardizedErrorMessageAndExit(operation, ex);
             }
-
-            catch (DirectoryNotFoundException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("Could not locate a directory", ex);
-            }
-
-            catch (PathTooLongException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("A filepath was specified that was too long", ex);
-            }
-
-            catch (IOException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("An input/output error occurred", ex);
-            }
-
-            catch (SecurityException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("A security exception occurred", ex);
-            }
-
-            catch (NotSupportedException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("An unsupported operation was attempted", ex);
-            }
-
-            catch (ArgumentOutOfRangeException ex)
-            {
-                WriteStandardizedErrorMessageAndExit("An out-of-range argument was passed to a function", ex);
-            }
-        }
-
-        static void WriteStandardizedErrorMessageAndExit(string message, Exception ex)
-        {
-            ConsoleColor originalColor = Console.ForegroundColor;
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"{message} while attempting to create the destination directory tree structure. Exiting.");
-            Console.WriteLine(ex.Message);
-            Console.ForegroundColor = originalColor;
-
-            Environment.Exit(1);
         }
     }
 }
